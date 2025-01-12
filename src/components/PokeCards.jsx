@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+//for fetching all pokes and making cards of them
 const PokeCards = () => {
   const [allpoke, setAllpoke] = useState([]);
   const url = "https://pokeapi.co/api/v2/pokemon?limit=151";
