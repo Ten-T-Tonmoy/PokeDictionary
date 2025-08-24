@@ -1,10 +1,31 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useGetPokemons } from "../../Hooks/useGetPokemons";
 
 const Home = () => {
+  // const url = "https://pokeapi.co/api/v2/pokemon/103/";
+  // const [poke, setPoke] = useState([]);
+  // const getShit = async () => {
+  //   const res = await fetch(url);
+  //   const data = await res.json();
+  //   setPoke(data);
+  //   console.log(data);
+  // };
+  // useEffect(() => {
+  //   getShit();
+  // }, []);
+  const [page, setPage] = useState(65);
+  //max page => 65
+  const { allPokemons, loading } = useGetPokemons({ page: page, limit: 20 });
+  console.log(allPokemons);
+
   return (
-    
+    <div>
+      {allPokemons.map((el, idx) => (
+        <div key={idx}>{el.name}</div>
+      ))}
+    </div>
   );
 };
 
