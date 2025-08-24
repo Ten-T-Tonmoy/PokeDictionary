@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 //for fetching all pokes and making cards of them
 const PokeCards = () => {
   

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useGetPokemons } from "../../Hooks/useGetPokemons";
 import MainBg from "./MainBg";
+import Pagination from "./Pagination";
 
 const Home = () => {
   // const url = "https://pokeapi.co/api/v2/pokemon/103/";
@@ -19,21 +20,25 @@ const Home = () => {
   const [page, setPage] = useState(65);
   //max page => 65
   const { allPokemons, loading } = useGetPokemons({ page: page, limit: 20 });
-  console.log(allPokemons);
+  // console.log(allPokemons);
 
   return (
     <div>
       <MainBg>
-        <div className=" flex-1 overflow-y-scroll w-full text-black bg-white">
-          {allPokemons.map((el, idx) => (
-            <div key={idx}>{el.name}</div>
-          ))}
-          {allPokemons.map((el, idx) => (
-            <div key={idx}>{el.name}</div>
-          ))}
-          {allPokemons.map((el, idx) => (
-            <div key={idx}>{el.name}</div>
-          ))}
+        <div
+          className="relative flex-1 overflow-y-scroll w-full text-black bg-white
+        border-[15px] border-t-0 border-[#e00c2c]"
+        >
+          {/* ------------------all pokemon cards ---------------*/}
+          <div className="p-4">
+            {allPokemons.map((el, idx) => (
+              <div key={idx}>{el.name}</div>
+            ))}
+          </div>
+          {/* ------------pagination----------------- */}
+          <div className=" sticky bg-white bottom-0 w-full">
+            <Pagination page={page} setPage={setPage} />
+          </div>
         </div>
       </MainBg>
     </div>
@@ -43,10 +48,6 @@ const Home = () => {
 export default Home;
 
 //----------------------- background-----------------------------
-
-const BackgroundRed = () => {
-  return <div>BackgroundRed</div>;
-};
 
 // const FadeIn = () => {
 //   return (
