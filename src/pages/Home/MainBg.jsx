@@ -14,9 +14,12 @@ const MainBg = ({ children }) => {
         <img
           src={pokeBall}
           className="h-14 absolute rotate-45 bg-white rounded-full
-          right-6 top-18"
+          right-6 top-1"
           alt=""
         />
+        <h1 className="text-4xl font-bold text-black top-19 right-4  absolute">
+          Pokédex
+        </h1>
       </div>
 
       {children}
