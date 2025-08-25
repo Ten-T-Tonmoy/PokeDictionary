@@ -1,5 +1,5 @@
 import React from "react";
-import pokeDex from "../../assets/ui/main.png";
+import pokeDex from "../../assets/ui/mainhead.png";
 import pokeBall from "../../assets/pokeball.png";
 
 const MainBg = ({ children }) => {
@@ -8,7 +8,7 @@ const MainBg = ({ children }) => {
       <div className="relative w-full">
         <img
           src={pokeDex}
-          className="h-[130px] w-full object-cover object-top   -z-10"
+          className="h-full w-full object-cover object-top   -z-10"
           alt="Pikachu"
         />
         <img
@@ -17,7 +17,7 @@ const MainBg = ({ children }) => {
           right-6 top-1"
           alt=""
         />
-        <h1 className="text-4xl font-bold text-black top-19 right-4  absolute">
+        <h1 className="text-4xl font-bold text-black top-14 left-26  absolute">
           Pokédex
         </h1>
       </div>

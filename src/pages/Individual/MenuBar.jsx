@@ -12,13 +12,13 @@ const MenuBar = ({ onBack, setCurrentTab, currentTab, pokemon }) => {
       </div>
       {/* --------------------menu bar----------------------------------- */}
       <div className="bg-red-500 p-4  flex items-center justify-between w-full">
-        <div className="flex items-center w-full justify-center gap-3">
+        <div className="flex items-center w-full justify-center gap-1">
           {/* --go back button---- */}
 
           <button
             onClick={onBack}
-            className="w-12 h-12 rounded-full border-2 border-gray-300 cursor-pointer
-       text-white   flex  justify-center  font-medium text-3xl 
+            className="w-10 h-10 rounded-full border-2 border-gray-300 cursor-pointer
+       text-white   flex  justify-center  font-medium text-2xl 
        hover:bg-white hover:text-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             &#8249;
