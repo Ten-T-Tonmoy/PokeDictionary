@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { EachPokemonContext } from "../../context/EachPokemonContext";
+import { Link } from "react-router-dom";
 
 //for fetching all pokes and making cards of them
 const PokeCards = ({ allpoke }) => {
@@ -70,10 +72,10 @@ const PokeCards = ({ allpoke }) => {
    * types []
    *    => type.name,type.url
    */
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const { setPokemon } = useContext(EachPokemonContext);
 
   function showpoke(idx) {
-    setSelectedPokemon(allpoke[idx]);
+    setPokemon(allpoke[idx]);
   }
 
   return (
@@ -83,91 +85,93 @@ const PokeCards = ({ allpoke }) => {
      p-4"
       >
         {allpoke.map((pokemon, idx) => (
-          <div
-            key={idx}
-            onClick={() => showpoke(idx)}
-            className={`relative group cursor-pointer rounded-2xl p-1 bg-gradient-to-br ${
-              pokemon.types[0].type.name === "normal"
-                ? typeColors[pokemon.types[1]?.type.name]
-                : typeColors[pokemon.types[0].type.name] ||
-                  "from-stone-300 to-stone-400"
-            } shadow-xl hover:shadow-2xl transform
-                transition-all duration-300 `}
-          >
-            {/* ---------------card contents---------------- */}
+          <Link to={`/pokemon/${pokemon.name}`}>
+            <div
+              key={idx}
+              onClick={() => showpoke(idx)}
+              className={`relative group cursor-pointer rounded-2xl p-1 bg-gradient-to-br ${
+                pokemon.types[0].type.name === "normal"
+                  ? typeColors[pokemon.types[1]?.type.name]
+                  : typeColors[pokemon.types[0].type.name] ||
+                    "from-stone-300 to-stone-400"
+              } shadow-xl hover:shadow-2xl transform
+            transition-all duration-300 `}
+            >
+              {/* ---------------card contents---------------- */}
 
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 h-full">
-              <div className="text-right text-sm font-mono text-gray-500 mb-2">
-                #{pokemon.id.toString().padStart(3, "0")}
-              </div>
-
-              {/* --------------image---------------------- */}
-              <div className="relative mb-4 flex justify-center">
-                <div className="bg-gradient-to-br from-white/50 to-white/20 rounded-full p-4 shadow-inner">
-                  <img
-                    loading="lazy"
-                    src={pokemon.sprites.other["home"].front_default}
-                    alt={pokemon.name}
-                    className="w-24 h-24 group-hover:scale-150 scale-125 transition-transform
-                     duration-300 filter drop-shadow-lg"
-                  />
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 h-full">
+                <div className="text-right text-sm font-mono text-gray-500 mb-2">
+                  #{pokemon.id.toString().padStart(3, "0")}
                 </div>
-              </div>
-              {/*               can use others tho 
+
+                {/* --------------image---------------------- */}
+                <div className="relative mb-4 flex justify-center">
+                  <div className="bg-gradient-to-br from-white/50 to-white/20 rounded-full p-4 shadow-inner">
+                    <img
+                      loading="lazy"
+                      src={pokemon.sprites.other["home"].front_default}
+                      alt={pokemon.name}
+                      className="w-24 h-24 group-hover:scale-150 scale-125 transition-transform
+                    duration-300 filter drop-shadow-lg"
+                    />
+                  </div>
+                </div>
+                {/*               can use others tho 
               <div className="relative mb-4 flex justify-center">
-                <div className="bg-gradient-to-br from-white/50 to-white/20 rounded-full p-4 shadow-inner">
-                  <img
-                    loading="lazy"
-                    src={
-                      pokemon.sprites.other["official-artwork"].front_default
-                    }
-                    alt={pokemon.name}
-                    className="w-24 h-24 group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg"
+              <div className="bg-gradient-to-br from-white/50 to-white/20 rounded-full p-4 shadow-inner">
+              <img
+              loading="lazy"
+              src={
+                pokemon.sprites.other["official-artwork"].front_default
+                }
+                alt={pokemon.name}
+                className="w-24 h-24 group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg"
                   />
                 </div>
               </div> */}
-              <h3 className="text-xl font-bold text-gray-800 text-center mb-3 capitalize">
-                {pokemon.name}
-              </h3>
+                <h3 className="text-xl font-bold text-gray-800 text-center mb-3 capitalize">
+                  {pokemon.name}
+                </h3>
 
-              {/* types */}
-              <div className="flex justify-center gap-2 mb-4">
-                {pokemon.types.map((type, typeIdx) => (
-                  <span
-                    key={typeIdx}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold text-white shadow-md ${
-                      typeBadgeColors[type.type.name] || "bg-gray-400"
-                    }`}
-                  >
-                    {type.type.name}
-                  </span>
-                ))}
-              </div>
-
-              {/* -------------------stats---------------------- */}
-
-              <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div className="bg-red-100 rounded-lg p-2">
-                  <div className="font-bold text-red-600">HP</div>
-                  <div className="text-gray-700">
-                    {pokemon.stats[0]?.base_stat || "N/A"}
-                  </div>
+                {/* types */}
+                <div className="flex justify-center gap-2 mb-4">
+                  {pokemon.types.map((type, typeIdx) => (
+                    <span
+                      key={typeIdx}
+                      className={`px-3 py-1 rounded-full text-xs font-semibold capitalize text-white shadow-md ${
+                        typeBadgeColors[type.type.name] || "bg-gray-400"
+                      }`}
+                    >
+                      {type.type.name}
+                    </span>
+                  ))}
                 </div>
-                <div className="bg-orange-100 rounded-lg p-2">
-                  <div className="font-bold text-orange-600">ATK</div>
-                  <div className="text-gray-700">
-                    {pokemon.stats[1]?.base_stat || "N/A"}
+
+                {/* -------------------stats---------------------- */}
+
+                <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                  <div className="bg-red-100 rounded-lg p-2">
+                    <div className="font-bold text-red-600">HP</div>
+                    <div className="text-gray-700">
+                      {pokemon.stats[0]?.base_stat || "N/A"}
+                    </div>
                   </div>
-                </div>
-                <div className="bg-blue-100 rounded-lg p-2">
-                  <div className="font-bold text-blue-600">DEF</div>
-                  <div className="text-gray-700">
-                    {pokemon.stats[2]?.base_stat || "N/A"}
+                  <div className="bg-orange-100 rounded-lg p-2">
+                    <div className="font-bold text-orange-600">ATK</div>
+                    <div className="text-gray-700">
+                      {pokemon.stats[1]?.base_stat || "N/A"}
+                    </div>
+                  </div>
+                  <div className="bg-blue-100 rounded-lg p-2">
+                    <div className="font-bold text-blue-600">DEF</div>
+                    <div className="text-gray-700">
+                      {pokemon.stats[2]?.base_stat || "N/A"}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

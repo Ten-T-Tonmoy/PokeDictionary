@@ -5,6 +5,7 @@ import { useGetPokemons } from "../../Hooks/useGetPokemons";
 import MainBg from "./MainBg";
 import Pagination from "./Pagination";
 import PokeCards from "./PokeCards";
+import { PokemonStatsPage } from "../Individual/IndividualPage";
 
 const Home = () => {
   // const url = "https://pokeapi.co/api/v2/pokemon/103/";
@@ -18,7 +19,9 @@ const Home = () => {
   // useEffect(() => {
   //   getShit();
   // }, []);
-  const [page, setPage] = useState(65);
+  const [page, setPage] = useState(1);
+  const [showStats, setShowStats] = useState(false);
+
   //max page => 65
   const { allPokemons, loading } = useGetPokemons({ page: page, limit: 20 });
   console.log(allPokemons);

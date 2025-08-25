@@ -31,6 +31,11 @@ const TestPage = () => {
           <button className="btn btn-primary">Go to Menu</button>
         </div>
       </Link>
+      <Link to="/pokemon">
+        <div>
+          <button className="btn btn-primary">Individual Pokemon</button>
+        </div>
+      </Link>
     </div>
   );
 };

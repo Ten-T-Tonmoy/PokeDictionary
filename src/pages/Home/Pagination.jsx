@@ -45,6 +45,7 @@ const Pagination = ({ page, setPage }) => {
 
       {shownPages.map((pageNum) => (
         <button
+          key={pageNum}
           onClick={() => setPage(pageNum)}
           className={`w-12 h-12 cursor-pointer rounded-md border-2 flex items-center justify-center text-lg font-medium ${
             pageNum === page

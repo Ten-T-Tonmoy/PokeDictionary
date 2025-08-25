@@ -4,6 +4,7 @@ import Auth from "./pages/Auth/Auth";
 import { Toaster } from "react-hot-toast";
 import { Link, Routes, Route } from "react-router-dom";
 import TestPage from "./pages/Misc/TestPage";
+import PokemonPage from "./pages/Individual/PokemonPage";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/" element={<TestPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/pokemon/:name" element={<PokemonPage />} />
       </Routes>
     </>
   );
