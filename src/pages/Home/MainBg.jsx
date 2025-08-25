@@ -17,7 +17,7 @@ const MainBg = ({ children }) => {
           right-6 top-1"
           alt=""
         />
-        <h1 className="text-4xl font-bold text-black top-14 left-26  absolute">
+        <h1 className="text-4xl font-bold text-black top-12 left-24  absolute">
           Pokédex
         </h1>
       </div>

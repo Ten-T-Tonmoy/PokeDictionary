@@ -1,27 +1,31 @@
 import React from "react";
 
-const StatsAndOthers = ({ totalStats, pokemon, formatStatName,typeColors }) => {
+const StatsAndOthers = ({
+  totalStats,
+  pokemon,
+  formatStatName,
+  typeColors,
+}) => {
   return (
     <div className="space-y-4">
       {/* ------------------base Stats-------------------------- */}
       <div className="bg-white rounded-lg p-4">
         <h3 className="font-bold text-gray-700 mb-3 flex justify-between">
           Base Stats
-          <span className="text-sm font-normal">Total: {totalStats}</span>
+          <span className=" font-normal">Total: {totalStats}</span>
         </h3>
         {pokemon.stats.map((stat, index) => (
           <div
             key={index}
-            className="flex justify-between items-center py-2 border-b border-gray-200 last:border-b-0"
+            className="flex justify-between items-center py-2 border-b
+             border-gray-200 last:border-b-0"
           >
-            <span className="font-semibold text-gray-700 w-20">
+            <div className="font-semibold text-gray-700 w-20">
               {formatStatName(stat.stat.name)}
-            </span>
-            <div className="flex items-center gap-3 flex-1">
-              <span className="font-mono text-gray-800 w-8 text-right">
-                {stat.base_stat}
-              </span>
-              <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-32">
+            </div>
+            <div className="flex items-center gap-3 w-full">
+              {/* meter  */}
+              <div className="flex-1 bg-gray-200 rounded-full h-2 ">
                 <div
                   className={`h-2 rounded-full bg-gradient-to-r ${
                     stat.base_stat >= 100
@@ -35,20 +39,23 @@ const StatsAndOthers = ({ totalStats, pokemon, formatStatName,typeColors }) => {
                   }}
                 ></div>
               </div>
+              <div className="font-mono text-gray-800 w-6 text-right">
+                {stat.base_stat}
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Type & Physical */}
+      {/* --------------------------type & physical--------------------------------*/}
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-white rounded-lg p-4">
+        <div className="bg-white rounded-lg p-4 ">
           <h3 className="font-bold text-gray-700 mb-3">Type</h3>
           <div className="flex flex-col gap-2">
             {pokemon.types.map((type, index) => (
               <span
                 key={index}
-                className={`px-3 py-2 rounded-lg text-white text-center bg-gradient-to-r ${
+                className={`px-3 py-2  rounded-lg text-white text-center bg-gradient-to-r ${
                   typeColors[type.type.name]
                 }`}
               >
@@ -58,7 +65,7 @@ const StatsAndOthers = ({ totalStats, pokemon, formatStatName,typeColors }) => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-4">
+        <div className="bg-white text-gray-500 rounded-lg p-4">
           <h3 className="font-bold text-gray-700 mb-3">Physical</h3>
           <div className="space-y-2">
             <p className="text-sm">
@@ -77,7 +84,7 @@ const StatsAndOthers = ({ totalStats, pokemon, formatStatName,typeColors }) => {
         </div>
       </div>
 
-      {/* Abilities */}
+      {/*-------------------------------abilities----------------------------*/}
       <div className="bg-white rounded-lg p-4">
         <h3 className="font-bold text-gray-700 mb-3">Abilities</h3>
         <div className="space-y-2">
@@ -93,7 +100,10 @@ const StatsAndOthers = ({ totalStats, pokemon, formatStatName,typeColors }) => {
               <h4 className="font-semibold capitalize text-purple-600 flex items-center gap-2">
                 {ability.ability.name.replace("-", " ")}
                 {ability.is_hidden && (
-                  <span className="text-xs bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full">
+                  <span
+                    className="text-xs ml-auto bg-yellow-400 text-yellow-900
+                   px-2 py-1 rounded-full"
+                  >
                     Hidden
                   </span>
                 )}

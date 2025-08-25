@@ -82,7 +82,7 @@ const PokeCards = ({ allpoke }) => {
     <>
       <div
         className="grid grid-cols-1 gap-4 justify-center 
-     py-4 px-8"
+     py-4 px-6"
       >
         {allpoke.map((pokemon, idx) => (
           <Link to={`/pokemon/${pokemon.name}`}>
@@ -108,7 +108,6 @@ const PokeCards = ({ allpoke }) => {
                 <div className="relative mb-4 flex justify-center">
                   <div className="bg-gradient-to-br from-white/50 to-white/20 rounded-full p-4 shadow-inner">
                     <img
-                      loading="lazy"
                       src={pokemon.sprites.other["home"].front_default}
                       alt={pokemon.name}
                       className="w-24 h-24 group-hover:scale-150 scale-125 transition-transform

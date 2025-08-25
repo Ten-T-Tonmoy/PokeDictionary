@@ -4,7 +4,7 @@ const InfoTab = ({ currentTab, pokemon }) => {
   return (
     <div>
       {currentTab === "info" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 text-gray-500 gap-6 mb-30">
           <div className="bg-white rounded-lg p-4">
             <h3 className="font-bold text-gray-700 mb-3">General Info</h3>
             <div className="space-y-2 text-sm">
@@ -46,3 +46,14 @@ const InfoTab = ({ currentTab, pokemon }) => {
 };
 
 export default InfoTab;
+
+// location_area_encounters =>url
+const LocationEncounters = () => {
+  return <div>kisu na</div>;
+};
+/**
+ * future upgrade
+ *
+ * add available regions ?
+ * routes?
+ */
