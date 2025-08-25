@@ -33,7 +33,7 @@ const typeColors = {
 
 export const PokemonStatsPage = ({ pokemon, onBack }) => {
   const [currentTab, setCurrentTab] = useState("stats");
-  const [currentSprite, setCurrentSprite] = useState("default");
+  const [currentSprite, setCurrentSprite] = useState("home");
   const [isShiny, setIsShiny] = useState(false);
 
   const primaryType = pokemon.types[0].type.name;
@@ -56,15 +56,16 @@ export const PokemonStatsPage = ({ pokemon, onBack }) => {
         return statName;
     }
   };
+  // const spritesCollection = ["official-artwork", "dream_world", "showdown"];
 
   const getCurrentSprite = () => {
     if (currentSprite === "official") {
       return pokemon.sprites.other?.["official-artwork"]?.front_default;
-    }
-    if (currentSprite === "dream") {
+    } else if (currentSprite === "home") {
+      return pokemon.sprites.other?.["home"]?.front_default;
+    } else if (currentSprite === "dream") {
       return pokemon.sprites.other?.dream_world?.front_default;
-    }
-    if (currentSprite === "showdown") {
+    } else if (currentSprite === "showdown") {
       return pokemon.sprites.other?.showdown?.front_default;
     }
     // Default sprite
