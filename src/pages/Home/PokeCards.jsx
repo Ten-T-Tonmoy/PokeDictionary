@@ -82,7 +82,7 @@ const PokeCards = ({ allpoke }) => {
     <>
       <div
         className="grid grid-cols-1 gap-4 justify-center 
-     p-4"
+     py-4 px-8"
       >
         {allpoke.map((pokemon, idx) => (
           <Link to={`/pokemon/${pokemon.name}`}>

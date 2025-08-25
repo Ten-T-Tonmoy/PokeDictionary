@@ -30,7 +30,7 @@ const Home = () => {
     <div>
       <MainBg>
         <div
-          className="relative flex-1 overflow-y-scroll w-full text-black bg-white
+          className="relative flex-1 overflow-y-scroll scroll-hide w-full text-black bg-white
         border-[15px] border-t-0 border-[#e00c2c]"
         >
           {/* ------------------all pokemon cards ---------------*/}
